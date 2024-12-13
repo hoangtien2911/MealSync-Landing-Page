@@ -19,6 +19,16 @@ const PaymentSuccessPage = () => {
             }, 4000); // Delay hiding by 1 second for fade-out effect
         }, 4000); // Show confetti for 1 second
 
+        setTimeout(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderInfo = urlParams.get("vnp_OrderInfo");
+
+            // Redirect if 'Deposit' is found in vnp_OrderInfo
+            if (orderInfo && orderInfo.includes("Deposit")) {
+                window.location.href = "https://meal-sync-web-shop.vercel.app/account-balance";
+            }
+        }, 4000)
+
         return () => clearTimeout(timer); // Cleanup the timer on component unmount
     }, []);
 
